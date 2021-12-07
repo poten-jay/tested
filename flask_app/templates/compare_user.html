@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title  %}
+세상에! 치킨 종류가 3000가지나 된다지?
+{% endblock  %}
+
+{% block lead  %}
+오늘은 뭘 먹어볼까?
+{% endblock  %}
+
+{% block main_body  %}
+<form method="POST" action="/compare">
+  <label>오늘 먹을 치킨</label>
+  <input name="compare_text" style="margin-bottom:10px" class="form-control" type="text" />
+  <input type="submit" class="btn btn-primary" value="랜덤 치킨" />
+</form>
+
+{% if prediction %}
+<p>Person likely to say '{{prediction.compare_text}}' is '{{prediction.result}}'</p>
+{% endif %}
+{% endblock  %}
