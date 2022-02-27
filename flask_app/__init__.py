@@ -33,25 +33,6 @@ def create():
 def update():
     return render_template('compare_user.html')
 
-@app.route('/ind/', methods=('POST', 'GET'))
-def index2():
-    if request.method == 'POST':
-        # return 'Hello'
-        task_content = request.form['content']
-        new_task = User(content=task_content)
-        
-        try:
-            db.session.add(new_task)
-            db.session.commit()
-            return redirect('/ind/')
-        except:
-            return 'Threr was an isuue adding your task'
-        
-    else:
-        tasks = User.query.order_dy(User.date_created).all()
-        return render_template('ind.html', tasks=tasks)
-
-
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test2.db'
 # app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{DB['user']}:{DB['password']}@{DB['host']}/{DB['database']}"
